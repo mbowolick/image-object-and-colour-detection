@@ -1,0 +1,5 @@
+# This is the image-object-and-colour-detection requirements
+opencv-python-headless	
+Pillow
+numpy
+matplotlib
