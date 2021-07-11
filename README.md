@@ -4,16 +4,16 @@ A Python project to explore image processing: object and colour detection
 
 ## Step 1 - Import your image and resize
 
-Using the cv.imread(), import the images in the original and greyscale formats:
+Using the `cv.imread()`, import the images in the original and greyscale formats:
 
-```
+```python
 original_img = cv.imread('./src/media/image1.jpg', cv.IMREAD_UNCHANGED)
 greyscale_img = cv.imread('./src/media/image1.jpg', cv.IMREAD_GRAYSCALE)
 ```
 
 Note, OpenCV uses BGR as its default colour order for images, matplotlib uses RGB. When you display an image loaded with OpenCv in matplotlib the channels will be back to front:
 
-```
+```python
 original_RGB = cv.cvtColor(original, cv.COLOR_BGR2RGB)
 ```
 
@@ -45,7 +45,7 @@ Therefore, using a test image of your chosing, the first goal should be to ident
 Using the identified bimodal distribution, and create the new image.
 Where black (0) keep the original image pixel, where white (0) replace with white.
 
-```
+```python
 new_original = []
 for i in range(th3.shape[0]):
     new_original.append([])
@@ -53,13 +53,47 @@ for i in range(th3.shape[0]):
         if(th3[i][j] == 0):
             new_original[i].append(original_RGB[i][j])
         else:
-            # set background white
-            new_original[i].append(np.array([255, 255, 255]))
+            new_original[i].append(np.array([255, 255, 255]))  #<-- new background
 ```
 
 In the example below the grey background, becomes white in the bimodal distribution map which can be easily identified in the
 ![Replaced Background](./src/readme-imgs/part-2B-replace-background.png)
 
-## Step 3 - Determine the average of the filtered out background
+## Step 3 - Find the dominant RGB array of the isoloated object
 
-TBC - in progress
+Isolate only the object pixels and find the dominant RGB array:
+
+```python
+replaced_background = []
+object_pixels = []    # <---- ISOLATED OBJECT
+for i in range(th3.shape[0]):
+    replaced_background.append([])
+    for j in range(th3.shape[1]):
+        if(th3[i][j] == 0):
+            replaced_background[i].append(resized_original_img[i][j])
+            object_pixels.append(resized_original_img[i][j])  # <---- ADD PIXELS
+        else:
+            replaced_background[i].append(np.array([255, 255, 255]))
+
+```
+
+From the `object_pixels`, convert the list to a Numpy Array:
+
+```python
+a = np.asarray(object_pixels)
+```
+
+And then, find the unique colours and return the colour with the highest count:
+
+```python
+colours, count = np.unique(a, axis=0, return_counts=True)
+dom_color = colours[count.argmax()]
+```
+
+|            |                                    |
+| ---------- | ---------------------------------- |
+| `axis = 0` | to not flatten the colours array   |
+| `argmax()` | returns the index of the max count |
+|            |                                    |
+
+![Dominant Color](./src/readme-imgs/part-3-dominant-colour.png)
