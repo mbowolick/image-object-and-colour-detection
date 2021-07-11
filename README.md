@@ -4,8 +4,6 @@ A Python project to explore image processing: object and colour detection
 
 ## Step 1 - Import your image and resize
 
-Resizing TBC??
-
 Using the cv.imread(), import the images in the original and greyscale formats:
 
 ```
@@ -18,6 +16,12 @@ Note, OpenCV uses BGR as its default colour order for images, matplotlib uses RG
 ```
 original_RGB = cv.cvtColor(original, cv.COLOR_BGR2RGB)
 ```
+
+For optimising the processing time the image will be resize. Retaining quality is not needed for the goal of mapping out colours.
+
+For resizing, the default scale for resize has been set to 20%. Resize is achieved through cv.resize(ORIGINAL_IMG, NEW_DIMENSIONS)
+
+![Import and Resize](./src/readme-imgs/part-1-import-and-resize.png)
 
 ## Step 2 - Isolate the subject and filter background
 
