@@ -90,10 +90,9 @@ colours, count = np.unique(a, axis=0, return_counts=True)
 dom_color = colours[count.argmax()]
 ```
 
-|            |                                    |
+| Component  | Explained                          |
 | ---------- | ---------------------------------- |
 | `axis = 0` | to not flatten the colours array   |
 | `argmax()` | returns the index of the max count |
-|            |                                    |
 
 ![Dominant Color](./src/readme-imgs/part-3-dominant-colour.png)
