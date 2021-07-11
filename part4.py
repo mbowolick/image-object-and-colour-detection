@@ -4,7 +4,7 @@ import time
 
 start_time = time.time()
 
-FILE = './src/media/image5.jpg'
+FILE = './src/media/image9.jpg'
 SCALE_PERCENT = 10  # percent of original size
 
 # Import test image

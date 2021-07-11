@@ -2,8 +2,8 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-FILE = './src/media/image8.jpg'
-SCALE_PERCENT = 10  # percent of original size
+FILE = './src/media/image9.jpg'
+SCALE_PERCENT = 20  # percent of original size
 
 # Import test image
 original = cv.imread(FILE, cv.IMREAD_UNCHANGED)
@@ -51,7 +51,7 @@ plt.title('Original'), plt.xticks([]), plt.yticks([])
 
 plt.subplot(3, 2, 2)
 plt.hist(original_RGB.ravel(), 256, ec='k')
-plt.title('Original Histogram'), plt.xticks([]), plt.xlim([-5, 256])
+plt.title('Original Histogram'), plt.xlim([-5, 256])
 
 
 # Row 2
@@ -61,7 +61,7 @@ plt.title('Background Removed'), plt.xticks([]), plt.yticks([])
 
 plt.subplot(3, 2, 4)
 plt.hist(np.asarray(object_pixels).ravel(), 256, ec='k')
-plt.title('Background Removed'), plt.xticks([]), plt.xlim([-5, 256])
+plt.title('Background Removed'), plt.xlim([-5, 256])
 
 # Row 3
 plt.subplot(3, 2, 5)
@@ -71,7 +71,7 @@ plt.title('Dominant Color: rgb{}'.format(dom_color)
 
 plt.subplot(3, 2, 6)
 plt.hist(swatch.ravel(), 256, ec='k')
-plt.title('Dominant Colour Histogram'), plt.yticks([]), plt.xlim([-5, 256])
+plt.title('Dominant Colour Histogram'), plt.xlim([-5, 256])
 plt.xlabel('Colour Scale: 0:black - 255:white')
 
 plt.show()

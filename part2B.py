@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-FILE = './src/media/image4.jpg'
+FILE = './src/media/image6.jpg'
 SCALE_PERCENT = 20  # percent of original size
 
 # Import test image

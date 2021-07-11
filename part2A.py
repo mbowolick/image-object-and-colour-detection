@@ -2,15 +2,17 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
+FILE = './src/media/image8.jpg'
+
 # Import test image
-original = cv.imread('./src/media/image1.jpg', cv.IMREAD_UNCHANGED)
+original = cv.imread(FILE, cv.IMREAD_UNCHANGED)
 
 # OpenCV uses BGR as its default colour order for images, matplotlib uses RGB.
 # When you display an image loaded with OpenCv in matplotlib the channels will be back to front.
 original_RGB = cv.cvtColor(original, cv.COLOR_BGR2RGB)
 
 # Import image as greyscale
-greyscale_img = cv.imread('./src/media/image1.jpg', cv.IMREAD_GRAYSCALE)
+greyscale_img = cv.imread(FILE, cv.IMREAD_GRAYSCALE)
 # global thresholding
 # ret1, th1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)
 # # Otsu's thresholding
